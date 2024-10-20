@@ -1,0 +1,17 @@
+<div>
+    <h1>Set your token</h1>
+
+    <div>
+        <form (submit)="setToken()" class="mb-5">
+            <div class="form-group mb-2">
+                <label for="token">Enter token:</label>
+                <input type="text" class="form-control" id="token" name="token" [(ngModel)]="token">
+                <br>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div *ngIf="getToken()">
+            <p>Token: {{ getToken() }}</p>
+        </div>
+    </div>
+</div>

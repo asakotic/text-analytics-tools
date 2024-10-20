@@ -1,0 +1,49 @@
+<div class="container mt-5">
+    <div>
+        <h3>Entity Extraction: find places, people, brands, and events in documents and social media.</h3>
+        <br>
+        <p>Enter a sentence to extract named entities: it works well also on short texts.</p>
+    </div>
+    <form (ngSubmit)="search()">
+        <div>
+            <label for="text">Enter text:</label>
+            <textarea id="text" class="form-control" rows="5" [(ngModel)]="text" name="text"></textarea>
+        </div>
+        <br>
+        <div>
+            <label for="minConfidence" class="form-label">Minimum Confidence: {{ minConfidence }}</label>
+            <input type="range" class="form-range" min="0" max="1" step="0.1" id="minConfidence" name="minConfidence" [(ngModel)]="minConfidence">
+        </div>
+        <div>
+            <label>Include:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="includeImage" [(ngModel)]="includeImage" name="includeImage">
+                <label class="form-check-label" for="includeImage">Image</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="includeAbstract" [(ngModel)]="includeAbstract" name="includeAbstract">
+                <label class="form-check-label" for="includeAbstract">Abstract</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="includeCategories" [(ngModel)]="includeCategories" name="includeCategories">
+                <label class="form-check-label" for="includeCategories">Categories</label>
+            </div>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    <br>
+
+    <div *ngIf="results.length > 0" class="mt-4">
+        <h3>Here are your results:</h3>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let res of results">
+                <div *ngIf="res.image.full">Image: <img [src]="res.image.full" alt="Entity Image"></div>
+                <div *ngIf="res.abstract" class="mt-2">Abstract: {{ res.abstract }}</div>
+                <div *ngIf="res.categories.length > 0" class="mt-2">Categories: {{ res.categories.join(', ') }}</div>
+            </li>
+        </ul>
+    </div>
+</div>
