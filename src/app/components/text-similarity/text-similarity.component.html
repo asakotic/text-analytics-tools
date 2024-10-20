@@ -1,1 +1,23 @@
-<p>text-similarity works!</p>
+<div class="container mt-5">
+    <h3 class="mb-4">Text Similarity</h3>
+
+    <form (ngSubmit)="check()">
+        <div>
+            <label for="text1" class="form-label">Enter first text:</label>
+            <textarea id="text1" class="form-control" rows="5" [(ngModel)]="text1" name="text1"></textarea>
+        </div>
+        <div>
+            <label for="text2" class="form-label">Enter second text:</label>
+            <textarea id="text2" class="form-control" rows="5" [(ngModel)]="text2" name="text2"></textarea>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    <div *ngIf="result !== null" class="mt-4">
+        <h2>Similarity Score:</h2>
+        <p><strong>{{ result }}</strong></p>
+    </div>
+</div>
