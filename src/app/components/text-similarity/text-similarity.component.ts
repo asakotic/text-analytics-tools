@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Service } from 'src/app/services/entity-extraction.service';
+import { Service } from 'src/app/services/service.service';
 import { environment } from 'src/app/environments/environment';
 
 @Component({
@@ -8,14 +8,14 @@ import { environment } from 'src/app/environments/environment';
   styleUrls: ['./text-similarity.component.css']
 })
 export class TextSimilarityComponent {
-  text1: string = ''; 
-  text2: string = '';  
-  result: number | null = null; 
+  text1: string = '';
+  text2: string = '';
+  result: number | null = null;
 
   constructor(private service: Service) { }
 
   check() {
-    const token = localStorage.getItem('token');  
+    const token = localStorage.getItem('token');
     const apiUrl = environment.apiSimilarity;
 
     const params: any = {
@@ -24,7 +24,7 @@ export class TextSimilarityComponent {
       token: token
     };
 
-    this.service.getResults(apiUrl, params ).subscribe((result: any) => {
+    this.service.getResults(apiUrl, params).subscribe((result: any) => {
       this.result = result.similarity;
     });
   }

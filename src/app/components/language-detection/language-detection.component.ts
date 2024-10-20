@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/app/environments/environment';
-import { Service } from 'src/app/services/entity-extraction.service';
+import { Service } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-language-detection',
@@ -8,9 +8,9 @@ import { Service } from 'src/app/services/entity-extraction.service';
   styleUrls: ['./language-detection.component.css']
 })
 export class LanguageDetectionComponent {
-  text: string = '';  
-  clean: boolean = false;  
-  results: any[] = []; 
+  text: string = '';
+  clean: boolean = false;
+  results: any[] = [];
 
   constructor(private service: Service) { }
 

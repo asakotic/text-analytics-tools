@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/app/environments/environment';
-import { Service } from 'src/app/services/entity-extraction.service';
+import { Service } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-entity-extraction',
@@ -9,13 +9,13 @@ import { Service } from 'src/app/services/entity-extraction.service';
 })
 export class EntityExtractionComponent {
   text: string = '';
-  minConfidence: number = 0.5;  
-  includeImage: boolean = false;  
-  includeAbstract: boolean = false;  
-  includeCategories: boolean = false; 
-  results: any[] = []; 
+  minConfidence: number = 0.5;
+  includeImage: boolean = false;
+  includeAbstract: boolean = false;
+  includeCategories: boolean = false;
+  results: any[] = [];
 
-  constructor(private service : Service) { }
+  constructor(private service: Service) { }
 
   search() {
 
@@ -37,10 +37,10 @@ export class EntityExtractionComponent {
     }
 
     const url = environment.apiExtraction
-    
-    this.service.getResults(url,params).subscribe( (results) => {
-       this.results = results.annotations
-       console.log(results)
+
+    this.service.getResults(url, params).subscribe((results) => {
+      this.results = results.annotations
+      console.log(results)
     })
   }
 }

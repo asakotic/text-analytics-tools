@@ -1,1 +1,31 @@
-<p>sentiment-analysis works!</p>
+<div class="container mt-5">
+    <h3>Sentiment Analysis</h3>
+
+    <form (ngSubmit)="analyze()">
+        <div>
+            <label for="text" class="form-label">Enter text:</label>
+            <textarea id="text" class="form-control" rows="5" [(ngModel)]="text" name="text"></textarea>
+        </div>
+        <div>
+            <label for="lang" class="form-label">Select language (optional):</label>
+            <select id="lang" class="form-select" [(ngModel)]="lang" name="lang">
+                <option value="auto">Auto-detect</option>
+                <option value="en">English</option>
+                <option value="it">Italian</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    <div *ngIf="result" class="mt-4">
+        <h3>Sentiment Result:</h3>
+        <p>Score: {{ result.score }}</p>
+        <p>
+           Sentiment Type:
+            <span [ngStyle]="{'color': result.color}">{{ result.type }}</span>
+        </p>
+    </div>
+</div>
+
